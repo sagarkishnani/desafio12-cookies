@@ -1,14 +1,13 @@
 import { normalize, schema } from "normalizr";
-import mensajesApi from "../api/mensajes.js";
 
 // Definimos un esquema de autor
-const schemaAuthor = new schema.Entity("author", {}, { idAttribute: "id" });
+const schemaAuthor = new schema.Entity("authors", {}, { idAttribute: "email" });
 
 // Definimos un esquema de mensaje
 const schemaMensaje = new schema.Entity(
   "post",
   { author: schemaAuthor },
-  { idAttribute: "_id" }
+  { idAttribute: "id" }
 );
 
 // Definimos un esquema de posts
@@ -18,9 +17,7 @@ const schemaMensajes = new schema.Entity(
   { idAttribute: "id" }
 );
 
-const normalizarMensajes = normalize(
-  await mensajesApi.listarAll(),
-  schemaMensajes
-);
+const normalizarMensajes = (mensajesConId) =>
+  normalize(mensajesConId, schemaMensajes);
 
 export { normalizarMensajes };

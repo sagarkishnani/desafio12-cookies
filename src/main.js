@@ -26,6 +26,12 @@ const io = new Socket(httpServer);
 
 io.on("connection", async (socket) => {});
 
+async function listarMensajesNormalizados() {
+  const mensajes = await mensajesApi.listarAll();
+  const normalizedData = normalizarMensajes({ id: "mensajes", mensajes });
+  return normalizedData;
+}
+
 //--------------------------------------------
 // configuro el servidor
 
@@ -53,23 +59,6 @@ app.use(
 
 //--------------------------------------------
 // rutas del servidor API REST
-
-const getSessionName = (req) => req.session.nombre ?? "";
-
-app.get("/", (req, res) => {
-  if (!req.session.contador) {
-    req.session.nombre = req.query.nombre;
-    req.session.contador = 1;
-    res.send(`Te damos la bienvenida ${getSessionName(req)}`);
-  } else {
-    req.session.contador++;
-    res.send(
-      `${getSessionName(req)} visitaste la página ${
-        req.session.contador
-      } veces.`
-    );
-  }
-});
 
 //--------------------------------------------
 // rutas del servidor web

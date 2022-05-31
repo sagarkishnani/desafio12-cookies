@@ -6,7 +6,9 @@ const authWebRouter = new Router();
 
 authWebRouter.get("/", (req, res) => {});
 
-authWebRouter.get("/login", (req, res) => {});
+authWebRouter.get("/login", (req, res, next) => {
+  webAuth(req.session.nombre);
+});
 
 authWebRouter.get("/logout", (req, res) => {});
 
