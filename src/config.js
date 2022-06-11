@@ -31,5 +31,7 @@ export default {
       database: "ecommerce",
     },
   },
-  fileSystem: {},
+  fileSystem: {
+    path: "DB/",
+  },
 };

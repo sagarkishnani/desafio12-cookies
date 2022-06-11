@@ -46,7 +46,7 @@ const schemaAuthor = new normalizr.schema.Entity(
 const schemaMensaje = new normalizr.schema.Entity(
   "post",
   { author: schemaAuthor },
-  { idAttribute: "_id" }
+  { idAttribute: "id" }
 );
 
 // Definimos un esquema de posts

@@ -7,7 +7,7 @@ const productosWebRouter = new Router();
 
 //Agregar web auth para hacerlo funcionar
 productosWebRouter.get("/home", webAuth, (req, res) => {
-  res.render("pages/home", {});
+  res.render("pages/home", { webAuth });
 });
 
 productosWebRouter.get("/productos-vista-test", (req, res) => {
